@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link type="image/png" sizes="96x96" rel="icon" href="cat_icon.png">
+<meta charset="UTF-8">
+<title>VAE Bottleneck for Image Classification</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro:wght@400;600&family=Source+Sans+Pro:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+
+body {
+    background: #ffffff;
+    margin: 0;
+    padding: 0;
+    font-family: "Source Serif Pro", Georgia, serif;
+    color: #333;
+    line-height: 1.6;
+}
+
+h1, h2, h3 {
+    font-family: "Source Sans Pro", Arial, sans-serif;
+    font-weight: 600;
+    margin-top: 45px;
+}
+
+p {
+    font-size: 20px;
+    margin-bottom: 28px;
+}
+
+ul {
+    font-size: 20px;
+    margin-bottom: 28px;
+}
+
+/* References */ 
+
+.references p {
+    text-indent: -25px;
+    padding-left: 25px;
+    font-size: 18px;
+    margin: 14px 0;
+    line-height: 1.65;
+    font-family: "Source Serif Pro", Georgia, serif;
+    font-size: 19px;
+}
+
+#references ol {
+    list-style-type: none; 
+    padding-left: 0; 
+}
+
+#references li {
+    margin: 14px 0;
+    line-height: 1.5; 
+    text-indent: -25px; 
+    padding-left: 25px; 
+    font-size: 19px;
+    font-family: "Source Serif Pro", Georgia, serif;
+}
+
+#references a {
+    color: cornflowerblue; 
+    text-decoration: none;
+}
+
+#references a:hover {
+    text-decoration: underline;
+}
+
+/* header */
+
+.header {
+    width: 100%;
+    text-align: center;
+    margin-top: 70px;
+    margin-bottom: 20px;
+}
+
+.header-title {
+    font-size: 40px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    font-family: "Source Sans Pro", sans-serif;
+}
+
+.header-subtitle {
+    font-size: 22px;
+    color: #777;
+    margin-bottom: 15px;
+    margin-left: 15%; 
+    margin-right: 15%;
+}
+
+/* Info box below header */
+
+.info-box {
+    display: flex;
+    justify-content:space-evenly;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    padding: 15px 0;
+    font-family: "Source Sans Pro", sans-serif;
+}
+
+.info-column {
+    flex: 1;
+    text-align: center;
+}
+
+.info-column b {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.info-column span {
+    font-size: 18px;
+    line-height: 1.4;
+}
+
+.names {
+    display: flex; 
+    flex-direction: row; 
+    justify-content:space-evenly; 
+}
+
+/* MAIN */
+
+.layout {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.sidebar {
+    width: 200px;
+    padding-top: 120px;
+    padding-left: 35px;
+    position: sticky;
+    height: 100vh;
+    top: 0;
+    font-family: "Source Sans Pro", sans-serif;
+}
+
+.sidebar b {
+    font-size: 18px;
+}
+
+.sidebar a {
+    display: block;
+    margin-top: 14px;
+    color: #555;
+    font-size: 16px;
+    text-decoration: none;
+}
+
+.sidebar a:hover {
+    color: #000;
+}
+
+/* Main content */
+.main-content {
+    width: 60%;
+    max-width: 900px;
+    padding-top: 10px;
+    padding-bottom: 20px;
+}
+
+/* Images */
+
+img {
+    max-width: 100%;
+    border-radius: 6px;
+    margin-top: 20px;
+}
+
+.dataset_img {
+    border-radius: 6px;
+}
+
+.caption {
+    font-family: "Source Sans Pro", sans-serif;
+    font-size: 17px;
+    color: #666;
+    text-align: center;
+    margin-top: 8px;
+    margin-bottom: 30px;
+}
+
+.image-row {
+    display: flex;
+    justify-content: center;
+    gap: 22px;
+    margin-top: 25px;
+    margin-bottom: 10px;
+}
+
+.sub-img {
+    flex: 1; 
+    text-align: center;
+}
+
+.models_img {
+    width: 55%;
+}
+
+.encoder_img {
+    width: 35%;
+}
+
+/* In-text citation style */
+a.cite {
+    color: #0055aa;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+a.cite:hover {
+    text-decoration: underline;
+}
+
+/* results table */ 
+.results-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    font-size: 18px;
+    font-family: "Source Sans Pro", sans-serif;
+}
+
+.results-table th {
+    background: #f4f4f4;
+    padding: 10px;
+    border-bottom: 2px solid #ccc;
+    text-align: left;
+}
+
+.results-table td {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.results-table tr:hover {
+    background: #fafafa;
+}
+
+.results-table caption {
+    caption-side: bottom;
+    font-size: 18px;
+    font-weight: 500;
+    margin-top: 15px; 
+    margin-bottom: 10px;
+    text-align: center;
+    font-family: "Source Sans Pro", sans-serif;
+}
+
+/* Appendix */ 
+.appendix-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    justify-items:center;
+    align-items: center;
+}
+
+.appendix-item {
+    text-align: center;
+    justify-self:center;
+}
+
+.appendix-item img {
+    width: 100%;
+    height: 280px;
+    object-fit: contain;
+    background: white;
+}
+
+</style>
+</head>
+
+
+<body>
+
+<!-- Header --> 
+
+<div class="header">
+    <div class="header-title">
+        Information Compression and Attention Mechanisms in Image Classification
+    </div>
+    <div class="header-subtitle">
+        How does compressing images through a VAE latent bottleneck affect downstream classification accuracy, 
+        and can attention mitigate this loss?
+    </div>
+</div>
+
+<div class="info-box">
+    <div class="info-column">
+        
+        <span>6.7960 Final Project, MIT</span>
+        <br>
+        <div class="names">
+            <div>Angela Yuan</div> 
+            <div> Selinna Lin</div> 
+        </div> 
+    </div>
+</div>
+
+
+<div class="layout">
+
+    <!-- sidebar -->
+    <div class="sidebar">
+        <b>Contents</b><br><br>
+        <a href="#intro">Introduction</a>
+        <a href="#related">Related Work</a>
+        <a href="#dataset">Dataset</a>
+        <a href="#models">Model Architectures</a>
+        <a href="#hyperparameters">Hyperparameters</a>
+        <a href="#results">Results</a>
+        <a href="#conclusion">Conclusion</a>
+        <a href="#references">References</a>
+        <a href="#appendix">Appendix</a>
+    </div>
+
+
+    <!-- actual stuff -->
+    <div class="main-content">
+
+        <h1 id="intro">Introduction</h1>
+        <p>
+        Modern image classification systems are increasingly deployed on resource-constrained devices, such as robots, embedded systems and mobile devices. To accommodate these constraints, models often incorporate information bottlenecks, which limit the amount of information that can flow through certain layers of the network. While these bottlenecks help reduce model size and computational requirements, they may also impact classification performance. In this study, we investigate the trade-offs associated with implementing information bottlenecks in image classification models. We aim to quantify the performance degradation, if any, that results from these bottlenecks and explore strategies to mitigate their effects. In this study, we focus on comparing the performance of VAE and CNN models on the Kaggle dataset Animal Faces-HQ (AFHQ) dataset for image classification. We are using VAE models as a proxy for architectures with information bottlenecks, and CNN models as a baseline without bottlenecks. We further investigate how attention may help mitigate the performance degradation caused by information bottlenecks  and potentially achieve similar levels of out-of-sample accuracy with a faster convergence rate and fewer number of epochs. This approach not only offers a way to maintain accuracy under tight resource bottleneck constraints, but also provides insight into how modern architectures balance compression, expressivity, and training efficiency for downstream classification tasks.
+        </p>
+
+        <h2 id="related">Related Work</h2>
+        <p>
+        Research on image classification has traditionally been on convolutional neural networks (CNNs), which remains the dominant architecture for visual recognition tasks due to their ability to extract hierarchical spatial information efficiently. Architectural advances such as deeper networks, improved normalization, and optimized convolutional blocks have pushed CNN performance forward <a href="#ref1">[1]</a>. However, these models have a high computational cost for the rich representational capacity it requires. 
+        </p>
+        <p>
+        What happens if we deliberately restrict a model’s internal representation to enforce compact features? The Information Bottleneck principle is about preserving information about the label while discarding irrelevant details of the input. The Variational Information Bottleneck (VIB) <a href="#ref2">[2]</a> demonstrates that optimizing a loss of the following form can improve generalization by constraining the latent space: 
+        </p>
+        <p>
+        <math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+        <mrow>
+            <mi>ℒ</mi>
+            <mo>=</mo>
+            <mrow>
+            <msub>
+                <mo>𝔼</mo>
+                <mrow>
+                <mi>q</mi>
+                <mo>(</mo>
+                    <mi>z</mi>
+                    <mo>|</mo>
+                    <mi>x</mi>
+                <mo>)</mo>
+                </mrow>
+            </msub>
+            <mo>[</mo>
+            <mo>-</mo>
+            <mi>log</mi>
+            <mo>(</mo>
+                <mi>q</mi>
+                <mo>(</mo>
+                <mi>y</mi>
+                <mo>|</mo>
+                <mi>z</mi>
+                <mo>)</mo>
+            <mo>)</mo>
+            <mo>]</mo>
+            </mrow>
+
+            <mo>+</mo>
+
+            <mrow>
+            <mi>β</mi>
+            <mo>⋅</mo>
+            <mi>KL</mi>
+            <mo>(</mo>
+                <mrow>
+                <mi>q</mi>
+                <mo>(</mo>
+                    <mi>z</mi>
+                    <mo>|</mo>
+                    <mi>x</mi>
+                <mo>)</mo>
+                </mrow>
+            <mo>‖</mo>
+                <mrow>
+                <mi>p</mi>
+                <mo>(</mo>
+                    <mi>z</mi>
+                <mo>)</mo>
+                </mrow>
+            <mo>)</mo>
+            </mrow>
+        </mrow>
+        </math>
+        </p>
+        <p>
+        Our end-to-end variational classifier (Model 2) is directly inspired by this formulation. More recent variations, such as the Renyi Fair Information bottleneck <a href="#ref3">[3]</a> extend the IB framework to incorporate fairness constraints while still learning compressed latent representations. The idea of ignoring as many details of the input as possible while still performing the given task well is applicable to not just image classification but also a lot of other use cases. 
+        </p>
+        <p>
+        Variational Autoencoders (VAEs) also impose a learned latent bottleneck, but the objective is to reconstruct rather than classify. As mentioned in a tutorial <a href="#ref4">[4]</a> we referred to, VAEs are fundamentally generative models, therefore VAEs encode details necessary for reconstruction, meaning that the resulting latent space might not be fully optimized for discriminative tasks. One approach to addressing this was with Branched VAE <a href="#ref5">[5]</a>, which adds a supervised classifier branch and a classification loss term to separate classes within the latent space. Their results show large accuracy improvements on MNIST from 67% to 97%, emphasizing a broader point that without explicit discriminative guidance, VAE bottlenecks lose class-relevant information, which aligns with our findings that VAE-based classifiers underperform CNNs unless strengthened by additional mechanisms. 
+        </p>
+        <p>
+        On the other hand, CNNtention also evaluates whether inserting attention blocks into CNN backbones will improve classification accuracy, and results show that the gains depend strongly on where attention is applied and what the task entails <a href="#ref6">[6]</a>. 
+        </p>
+        <p>
+        While prior work has extensively studied CNNs, VAEs, information bottlenecks, and attention mechanisms individually, these threads of research rarely intersect in a controlled experimental setting. In particular, we found no studies that directly compare CNNs, VAEs, and their attention-augmented variants side-by-side on the same dataset, under identical training conditions, to examine how latent compression influences downstream classification or how attention can compensate for information loss, and what computational trade-offs this added mechanism might introduce. Existing papers typically evaluate these architectures in isolation, focus on generative quality rather than discriminative performance, or apply attention to CNNs without considering bottlenecked models. Our work fills this gap by framing the problem through the lens of the Information Bottleneck principle using VAE imposed bottleneck and providing a systematic empirical analysis of how architectural capacity, latent dimensionality, and attention interact. This unified comparison offers new insight into when attention meaningfully improves performance, while also revealing trade-offs in training efficiency. 
+        </p>
+
+        <h2 id="dataset">Dataset</h2>
+        <p>
+        We used the Kaggle dataset Animal-Faces-HQ (AFHQ) for this study, consisting of 16130 high-resolution images of three classes/domains: cat, dog, and wildlife, each at 512x512 resolution. Our task is to explore the classification accuracy and training time behavior when we impose dimension bottlenecks and information constraints such as those in deep learning architectures like VAEs. 
+        </p>
+
+        <img class="dataset_img" src="figures/dataset_preview.png">
+        <p class="caption">Figure 1: Sample images from AFHQ (Cats, Dogs, Wildlife).</p>
+
+        <p>
+        We preprocessed all images using a standardized transformation pipeline to ensure consistent input and comparable training behavior. Each image is first resized to a fixed spatial resolution of 64x64, normalized per-pixel to the [0, 1] range, then mapped to the [-1, 1] range using a mean and standard deviation of 0.5. We subsample the dataset to include only 1500 training samples and 300 validation samples uniformly distributed between the three classes. 
+        </p>
+
+        <h1 id="models">Model Architectures</h1>
+
+        <p>
+        We aim to compare classification performance under an information bottleneck constraint versus a standard CNN. To implement the bottleneck, we use a Variational Autoencoder (VAE), which serves as a proxy for the information bottleneck. Specifically, we constrain the latent space to 128 dimensions, such that during inference, the network generates latent vectors of this fixed size. In contrast, a conventional feedforward CNN processes the raw input of size 64×64 pixels per channel, with 3 channels (RGB), corresponding to a much higher-dimensional feature space. Thus, the VAE-based bottleneck effectively reduces the input dimensionality and restricts representational capacity by approximately a factor of 96, enforcing a compact and informative latent representation.  
+        </p>
+
+        <div class="image-row">
+            <img class="models_img" src="figures/5 models_figma.png">
+            <img class="encoder_img" src="figures/Encoder_figma.png">
+        </div>
+        <p class="caption">Figure 2: Left: Overview of five models. Right: VAE encoder design.</p>
+
+        <h3>Model 1: Pretrained VAE + Classifier</h3>
+        <p>
+        We implement a two-stage model consisting of a pretrained VAE encoder followed by a classifier network. The VAE encoder compresses the input images into a 128-dimensional latent space, effectively serving as an information bottleneck. The classifier network then takes these latent representations as input and predicts the class labels (cat, dog, wildlife). The VAE is trained separately on the training dataset to learn an efficient encoding of the images. Once trained, the encoder weights are frozen, and only the classifier network is trained on the latent representations. This setup allows us to evaluate how well the compressed features retain class-discriminative information.
+        </p>
+
+        <div class="image-row">
+            <img src="figures/exp 1 (pretrained VAE)/vae_recon_val.png">
+        </div>
+        <p class="caption">Figure 3: Sample VAE reconstruction results after pretraining.</p>
+
+        <h3>Model 2: End-to-End VAE Encoder + Classifier </h3>
+        <p>
+        In Model 2, we remove the decoder entirely and train an encoder and classifier jointly in an end-to-end manner. Unlike Model 1, the encoder is not constrained to produce a latent space suitable for reconstruction; instead, it is optimized solely for classification performance. The encoder learns to extract compact feature representations directly from input images, and these features are passed to the classifier network, which outputs class probabilities. Because the entire model is trained together, the encoder adapts specifically to the discriminative signal in the labels, potentially learning more task-specific representations than the VAE encoder in Model 1.
+        </p>
+
+        <h3>Model 3: Standard CNN Classifier</h3>
+        <p>
+        Model 3 consists of a pure convolutional neural network trained from scratch. The CNN contains a series of convolution, normalization, and pooling layers that learn hierarchical features and patterns directly from the pixels. The extracted feature maps are fed through the same classifier head to produce the final predictions. This model serves as a baseline that does not use information bottleneck, pretraining, or attention. By comparing its performance with the encoder-based models, we observe whether conventional CNN feature learning is more effective than learned latent representations for this dataset.
+        </p>
+
+        <h2> Incorporating Attention Mechanisms: </h2>
+        <h3>Model 4: VAE Encoder + Multi-Head Attention + Classifier</h3>
+        <p>
+        We extend the standard VAE encoder–classifier pipeline by inserting a multi-head self-attention block at the end of the convolutional encoder. The encoder consists of four stride-2 convolutional layers that downsamples the input image into a compact feature map of size (B, 256, 4, 4). Before flattening, this feature map is reshaped into a sequence of spatial tokens and processed by a SelfAttention2D module (we use in our Model 5 as well), which applies LayerNorm and multi-head attention across all the spatial positions. This allows the encoder to model long-range spatial dependencies that aren’t just local to the convolution. The attended feature map is then flattened and projected into a latent vector, where separate linear projections produce the mean and log-variance parameters for the latent distribution. The resulting latent representation is the input to the same classifier network. This model evaluates whether introducing attention at the feature-aggregation stage improves performance beyond what a standard convolutional encoder achieves.
+        </p>
+
+        <h3>Model 5: CNN + Multi-Head Attention + Classifier</h3>
+        <p>
+        Model 5 augments a standard convolutional classifier with the same multi-head self-attention module from Model 4 which we insert into the intermediate stages of the CNN. The backbone has three convolutional blocks that progressively downsample the image, which helps extract spatial feature maps from images. After the second and third convolutional blocks, we reshape the feature maps into sequences of spatial tokens and pass it through our SelfAttention2D module. Unlike standard convolutions with a limited localized range, self-attention allows every location in the feature map to interact with every other location. This model is designed to evaluate how self-attention influences the representations learned by the convolution. 
+        </p>
+
+        <h1 id="hyperparameters">Hyperparameter Tuning</h1>
+        <p>
+        For the VAE-based models (Models 1, 2, and 4), we conducted a systematic hyperparameter search over the latent dimension, testing values in [16, 32, 64, 128, 256, 512] to identify the best latent size to represent our image dataset. For Models 4 and 5, which incorporate a multi-headed self-attention mechanism, we performed hyperparameter tuning on the number of attention heads. We explored head numbers in [1,2,4,8,16,32] to determine the architectural configuration that most effectively captures dependencies between spatial features while maintaining computational efficiency. 
+        </p>
+        <p>
+        Since Model 4 contains both a VAE bottleneck and an attention module, we chose to do a two-stage approach rather than a full two-dimensional grid search: 
+        </p>
+        <ul>
+            <li>When we swept latent dimensions, we fixed the number of attention heads to 8 since it showed stable performance in preliminary experiments we did. </li>
+            <li>When sweeping attention heads, we fixed the latent dimensionality to 32, since it was the best performing value from our previous latent sweep. </li> 
+        </ul>
+        <div class="image-row">
+            <div class="sub-img">
+                <img src="figures/hyperparameters/latent-sweep.png" alt="Latent Dimension Sweep Results">
+                <p class="caption">Figure 4: Latent Dimension Sweep Results</p>
+            </div>
+            <div class="sub-img">
+                <img src="figures/hyperparameters/attention-sweep.png" alt="Attention Head Sweep Results">
+                <p class="caption">Figure 5: Attention Head Sweep Results</p>
+            </div>
+        </div>
+
+        <h1 id="results">Results</h1>
+        <table class="results-table">
+            <caption>Table 1: Summary of training and test accuracies and losses across all 5 models. </caption>
+            <tr>
+                <th>Model Architecture</th>
+                <th>Training Loss</th>
+                <th>Test Loss</th>
+                <th>Training Accuracy</th>
+                <th>Test Accuracy</th>
+            </tr>
+
+            <tr>
+                <td>Pretrained VAE + Classifier</td>
+                <td>0.3875</td>
+                <td>0.7056</td>
+                <td>0.8740</td>
+                <td>0.7067</td>
+            </tr>
+
+            <tr>
+                <td>Variational Classifier</td>
+                <td>0.3884</td>
+                <td>0.6770</td>
+                <td>0.8593</td>
+                <td>0.7267</td>
+            </tr>
+
+            <tr>
+                <td>CNN</td>
+                <td>0.1322</td>
+                <td>0.3864</td>
+                <td>0.9600</td>
+                <td>0.8700</td>
+            </tr>
+
+            <tr>
+                <td>Attention VAE Classifier</td>
+                <td>0.1073</td>
+                <td>0.4274</td>
+                <td>0.9860</td>
+                <td>0.8533</td>
+            </tr>
+
+            <tr>
+                <td>CNN + Attention</td>
+                <td>0.0514</td>
+                <td>0.3926</td>
+                <td>0.9873</td>
+                <td>0.8667</td>
+            </tr>
+        </table>
+        <p>These results show that introducing a bottleneck through a variational autoencoder generally lowers classification performance relative to a pure CNN. The plain CNN achieves the strongest baseline results (test loss 0.3864, test accuracy 0.8700), while the jointly trained Variational Classifier and the Pretrained VAE + Classifier are weaker, reaching test accuracies of 0.7267 and 0.7067, respectively. This indicates that compressing inputs into a latent space removes some discriminative detail that the CNN can exploit directly. </p>
+        <p>Adding attention layers produces two different patterns depending on the underlying model. In bottlenecked architectures, attention is clearly beneficial: the Attention VAE Classifier improves test accuracy to 0.8533 and sharply reduces test loss to 0.4274, suggesting that attention helps recover task-relevant structure that the latent compression tends to blur. In contrast, adding attention to the CNN has only a minimal effect, with accuracy essentially unchanged (0.8700 vs. 0.8667). A likely reason is that the baseline CNN already captures local spatial correlations effectively, so additional attention layers have limited new information to leverage. It is also possible that our specific task of classifying animal faces requires less long-range dependencies (for example, between an animal’s face, torso, and limbs) and makes global attention less critical compared to features the convolutional layers already capture. </p>
+        <p>An additional noteworthy trend is the large difference in training time. The VAE-based models converge far more quickly than the CNN models. For example, Model 4 (VAE + Attention) consistently reached its peak validation performance in fewer than 20 epochs, whereas Model 5 (CNN + Attention) required 150-300 epochs depending on the number of attention heads to achieve the same accuracy (training time increasing with the number of attention heads). This suggests that, despite having slightly lower accuracy than a full CNN, attention-augmented VAE encoders may offer substantial efficiency advantages in settings where rapid training is important. </p>
+        <p>Additional figures showing training and validation loss and accuracy curves, as well as confusion matrices for each model, are available in the <a href="#appendix">Appendix</a>. </p>
+
+        <h1 id="conclusion">Conclusion</h1>
+        <p>These observations raise interesting directions for future work. One possibility is to design adaptive or hybrid architectures that learn when and where attention should be applied, or dynamically adjust latent dimensionality based on image content or class semantics. More broadly, optimizing bottlenecks is not only about shrinking models; it is about understanding where essential information resides and how to preserve it efficiently throughout the learning pipeline.</p>
+
+        <h1 id="references">References</h1>
+        <div id="references">
+            <ol>
+                <li id="ref1">
+                    [1] F. Sultana, A. Sufian, and P. Dutta, “Advancements in image classification using convolutional neural network,” <a href ="https://arxiv.org/abs/1905.03288" target="_blank">arXiv:1905.03288</a>. 
+                </li>
+                <li id="ref2">
+                    [2] A. A. Alemi, I. Fischer, J. V. Dillon, and K. Murphy, “Deep variational information bottleneck,” <a href="https://arxiv.org/abs/1612.00410" target="_blank">arXiv:1612.00410</a>. 
+                </li>
+                <li id="ref3">
+                    [3] A. Gronowski, W. Paul, F. Alajaji, B. Gharesifard, and P. Burlina, “Renyi fair information bottleneck for Image Classification,” <a href="https://arxiv.org/abs/2203.04950" target="_blank">arXiv:2203.04950</a>.
+                </li>
+                <li id="ref4">
+                    [4] C. Doersch, “Tutorial on variational autoencoders,” <a href="https://arxiv.org/abs/1606.05908" target="_blank">arXiv:1606.05908</a>.
+                </li>
+                <li id="ref5">
+                    [5] A. Salah and D. Yevick, “Branched variational Autoencoder classifiers,” <a href="https://arxiv.org/abs/2401.02526" target="_blank">arXiv:2401.02526</a>.
+                </li>
+                <li id="ref6">
+                    [6] N. Kapila, J. Glattki, and T. Rathi, “CNNTENTION: Can CNNs do better with attention?,” <a href="https://arxiv.org/abs/2412.11657" target="_blank">arXiv:2412.11657</a>.
+                </li>
+            </ol>
+        </div>
+
+        <h1 id="appendix">Appendix</h1>
+
+        <h2>A. Training and Validation Loss Curves</h2>
+        <div class="appendix-grid">
+        <div class="appendix-item">
+            <img src="figures/exp 1 (pretrained VAE)/vae_classifier_loss_plot.png" alt="Model 1 - Pretrained VAE + Classifier Loss Curves">
+            <p class="caption">Figure A.1: Model 1 - Pretrained VAE + Classifier Loss Curves</p>
+        </div>
+        <div class="appendix-item">
+            <img src="figures/exp 2 (joint  VAE + classifier)/joint_loss_curve.png" alt ="Model 2 - End-to-End VAE Encoder + Classifier Loss Curves">
+            <p class="caption">Figure A.2: Model 2 - End-to-End VAE Encoder + Classifier Loss Curves</p>
+        </div>
+        <div class="appendix-item">
+            <img src="figures/exp 3 (CNN)/cnn_loss_plot.png" alt="Model 3 - CNN + Classifier Loss Curves">
+            <p class="caption">Figure A.3: Model 3 - CNN + Classifier Loss Curves</p>
+        </div>
+        <div class="appendix-item">
+            <img src="figures/exp 4 (VAE + attention)/attention_vae_loss_curve.png" alt="Model 4 - VAE + Multi-Head Attention + Classifier Loss Curves">
+            <p class="caption">Figure A.4: Model 4 - VAE + Multi-Head Attention + Classifier Loss Curves</p>
+        </div>
+        <div class="appendix-item">
+            <img src="figures/exp 5 (CNN + Attention)/cnn_attention_loss_plot.png" alt="Model 5 - CNN + Multi-Head Attention + Classifier Loss Curves">
+            <p class="caption">Figure A.5: Model 5 - CNN + Multi-Head Attention + Classifier Loss Curves</p>
+        </div>
+        </div>
+
+        <h2>B. Training and Validation Accuracy Curves</h2>
+        <div class="appendix-grid">
+        <div class="appendix-item">
+            <img src="figures/exp 1 (pretrained VAE)/vae_classifier_acc_plot.png" alt="Model 1 - Pretrained VAE + Classifier Accuracy Curves">
+            <p class="caption">Figure B.1: Model 1 - Pretrained VAE + Classifier Accuracy Curves</p>
+        </div>
+        <div class="appendix-item">
+            <img src="figures/exp 2 (joint  VAE + classifier)/joint_accuracy_curve.png" alt ="Model 2 - End-to-End VAE Encoder + Classifier Accuracy Curves">
+            <p class="caption">Figure B.2: Model 2 - End-to-End VAE Encoder + Classifier Accuracy Curves</p>
+        </div>
+        <div class="appendix-item">
+            <img src="figures/exp 3 (CNN)/cnn_acc_plot.png" alt="Model 3 - CNN + Classifier Accuracy Curves">
+            <p class="caption">Figure B.3: Model 3 - CNN + Classifier Accuracy Curves</p>
+        </div>
+        <div class="appendix-item">
+            <img src="figures/exp 4 (VAE + attention)/attention_vae_accuracy_curve.png" alt="Model 4 - VAE + Multi-Head Attention + Classifier Accuracy Curves">
+            <p class="caption">Figure B.4: Model 4 - VAE + Multi-Head Attention + Classifier Accuracy Curves</p>
+        </div>
+        <div class="appendix-item">
+            <img src="figures/exp 5 (CNN + Attention)/cnn_attention_acc_plot.png" alt="Model 5 - CNN + Multi-Head Attention + Classifier Accuracy Curves">
+            <p class="caption">Figure B.5: Model 5 - CNN + Multi-Head Attention + Classifier Accuracy Curves</p>
+        </div>
+        </div>
+
+        <h2>C. Confusion Matrices</h2>
+        <div class ="appendix-grid">
+        <div class="appendix-item">
+            <img src="figures/exp 1 (pretrained VAE)/vae_classifier_confusion_matrix.png" alt="Model 1 - Pretrained VAE + Classifier Confusion Matrix">
+            <p class="caption">Figure C.1: Model 1 - Pretrained VAE + Classifier Confusion Matrix</p>
+        </div>
+        <div class="appendix-item">
+            <img src="figures/exp 2 (joint  VAE + classifier)/joint_confusion_matrix.png" alt ="Model 2 - End-to-End VAE Encoder + Classifier Confusion Matrix">
+            <p class="caption">Figure C.2: Model 2 - End-to-End VAE Encoder + Classifier Confusion Matrix</p>
+        </div>
+        <div class="appendix-item">
+            <img src="figures/exp 3 (CNN)/cnn_confusion_matrix.png" alt="Model 3 - CNN + Classifier Confusion Matrix">
+            <p class="caption">Figure C.3: Model 3 - CNN + Classifier Confusion Matrix</p>
+        </div>
+        <div class="appendix-item">
+            <img src="figures/exp 4 (VAE + attention)/variational_attention_confusion_matrix.png" alt="Model 4 - VAE + Multi-Head Attention + Classifier Confusion Matrix">
+            <p class="caption">Figure C.4: Model 4 - VAE + Multi-Head Attention + Classifier Confusion Matrix</p>
+        </div>
+        <div class="appendix-item">
+            <img src="figures/exp 5 (CNN + Attention)/cnn_attention_confusion_matrix.png" alt="Model 5 - CNN + Multi-Head Attention + Classifier Confusion Matrix">
+            <p class="caption">Figure C.5: Model 5 - CNN + Multi-Head Attention + Classifier Confusion Matrix</p>
+        </div>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>
