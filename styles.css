@@ -392,6 +392,25 @@ html[data-theme="dark"] .icon-sun { display: none; }
   background: var(--panel);
 }
 
+.video-embed {
+  display: block;
+  width: 100%;
+  max-height: min(70vh, 640px);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  margin-top: 12px;
+  background: #000;
+}
+
+.project-photo {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  margin-top: 12px;
+}
+
 .rss-page .topbar {
   display: grid;
   grid-template-columns: auto 1fr auto;
