@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>MIT Motorsports - Selinna Lin</title>
   <link rel="icon" href="../../favicon.ico" type="image/x-icon" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&family=Source+Serif+Pro:wght@400;600&family=Source+Sans+Pro:wght@300;400;600&display=swap" rel="stylesheet">  <link rel="stylesheet" href="../../styles.css?v=2" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&family=Source+Serif+Pro:wght@400;600&family=Source+Sans+Pro:wght@300;400;600&display=swap" rel="stylesheet">  <link rel="stylesheet" href="../../styles.css?v=3" />
 </head>
 
 <body class="clean-home">
@@ -50,91 +50,83 @@
     </nav>
   </header>
 
-  <main class="project-detail" style="max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; align-items: center;">
-    
-    <header class="project-header" style="margin-bottom: 18px; width: 100%; text-align: left;">
-      <h1 style="font-size: 40px; font-weight: 600; margin-bottom: 16px;">MIT Motorsports: Autonomous RC Car</h1>
-      <p style="font-size: 18px; color: var(--text-secondary); line-height: 1.6;">
-        Autonomous driving on the team testbed: perception, planning, and control integrated on an RC Car.
+  <main class="project-detail">
+
+    <section class="project-hero">
+      <video class="hero-video" autoplay muted loop playsinline disablepictureinpicture>
+        <source src="../../media/testbed_driving.MOV" type="video/quicktime" />
+        <source src="../../media/testbed_driving.MOV" type="video/mp4" />
+        Your browser does not support embedded video.
+      </video>
+    </section>
+
+    <header class="project-intro-detail">
+      <h1>MIT Motorsports: Autonomous Racecar</h1>
+      <p class="project-tagline">
+        Driverless perception, planning, and control integrated on our team's RC testbed.
       </p>
-      <div class="pills" style="margin-top: 24px;">
+      <div class="pills">
         <span class="pill">ROS2</span>
         <span class="pill">Python</span>
         <span class="pill">C++</span>
       </div>
     </header>
 
-    <article class="project-body" style="width: 100%; line-height: 1.8; color: var(--text-primary);">
-      
-      <section style="margin-bottom: 40px;">
-        <h2 style="font-size: 24px; font-weight: 500; border-bottom: 1px solid var(--border-color); padding-bottom: 8px; margin-bottom: 16px;">Overview</h2>
-        <p>The overarching goal of the driverless system is to autonomously navigate dynamic events defined by the Formula SAE Driverless competition as well as pass both static and dynamic safety tech inspections. 
-          The vehicle must successfully compete in events such as Acceleration, Skidpad, and Autocross (and Trackdrive in the future). 
-          To accomplish this, the vehicle relies entirely on its on car autonomy stack to stay within the track boundaries, which are marked by blue cones to the left, yellow cones to the right, and orange cones denoting timing and boundary lines. 
-          Our major progress for this year was establishing a fully functional testing pipeline by making our physical development testbed driverless. </p>
-      </section>
+    <section class="project-gallery">
+      <img src="../../imgs/testbed photos/DSCF9241.jpg" alt="RC testbed"/>
+      <img src="../../imgs/testbed photos/testbed_on_track2.jpg" alt="Testbed on track"/>
+      <img src="../../imgs/testbed photos/DSCF9249.jpg" alt="testbed front profile"/>
+      <img src="../../imgs/testbed photos/sensors_visualization.png" alt="Sensor perception visualization"/>
+    </section>
 
-      <section style="margin-bottom: 40px;">
-        <img 
-          src="../../imgs/testbed photos/DSCF9241.jpg" 
-          alt="RC Car Testbed" 
-          style="width: 100%; border-radius: 8px; border: 1px solid var(--border-color);"
-        />
-        <p style="text-align: center; font-size: 14px; color: var(--text-secondary); margin-top: 8px;">MIT Motorsports RC Testbed</p>
-      </section>
+    <section class="project-details">
 
-      <section style="margin-bottom: 40px;">
-        <h2 style="font-size: 24px; font-weight: 500; border-bottom: 1px solid var(--border-color); padding-bottom: 8px; margin-bottom: 16px;">Technical Architecture</h2>
-        
-        <h3 style="font-size: 20px; font-weight: 500; margin-top: 24px; margin-bottom: 12px;">Software</h3>
-        <ul style="margin-top: 0; padding-left: 20px;">
-          <li style="margin-bottom: 8px;"><b>Perception:</b> The perception pipeline starts with ground removal and filters out unlikely points and clusters based on spatial position and density. 
-            The remaining LiDAR points are clustered to identify physical cone positions. 
-            We then project these cone clusters into the camera frame to extract and segment their color information.</li>          
-          <li style="margin-bottom: 8px;"><b>State Estimation:</b> ROS 2 <code>robot_localization</code> package to run an Extended Kalman Filter (EKF) at 100Hz in 2D mode. 
-          We currently are using dynamic configurations for indoor vs. outdoor testing, as using GPS requires us to have an open roof. 
-          The indoor mode fuses VN-300 IMU data and ground speed odometry. The outdoor mode fuses RTK GPS data via a <code>navsat_transform_node</code> for robust global positioning in addition to IMU and speed.</li>
-          <li style="margin-bottom: 8px;"><b>Planning:</b> Delaunay triangulation-based path planner that subscribes to the perceived cone centroids. 
-            It triangulates the visible track boundaries to build a spatial graph, calculates the midpoints between valid cone pairs, and uses Dijkstra's algorithm to find the shortest viable path. 
-            To ensure smooth steering, the resulting path is refined using a univariate spline before being published to the controller.</li>          
-            <li style="margin-bottom: 8px;"><b>Control:</b> Pure pursuit lateral controller that subscribes to the path generated by the planner. 
-              On each control loop, it selects the furthest midpoint by Euclidean distance and applies a geometric bicycle steering law to constantly chase the lookahead point, publishing the calculated steering angle and target velocity commands. 
-              The calculated target velocity commands are sent via USB to an ODrive motor controller, which serves as the vehicle's drive-by-wire system. 
-              The ODrive handles the low-level closed-loop control of the brushless traction motor while simultaneously publishing high-frequency ground speed odometry back to the state estimation pipeline.</li>
-        </ul>
+      <details>
+        <summary>Overview</summary>
+        <div class="details-body">
+          <p>
+            The driverless system must autonomously navigate the Formula SAE Driverless events: 
+            Acceleration, Skidpad, Autocross (and Trackdrive in the future) and pass static and
+            dynamic safety tech inspections. Track boundaries are marked by blue cones on the left,
+            yellow cones on the right, and orange cones for timing/boundary lines. The car relies entirely on
+            its on-car autonomy stack to stay within bounds. We've made our physical
+            development testbed fully driverless so we have a real testing pipeline.
+          </p>
+        </div>
+      </details>
 
-        <h3 style="font-size: 20px; font-weight: 500; margin-top: 32px; margin-bottom: 12px;">Hardware</h3>
-        <ul style="margin-top: 0; padding-left: 20px;">
-          <li style="margin-bottom: 8px;"><b>Sensors:</b>
-            <ul style="margin-top: 4px; padding-left: 20px;">
-              <li>3 Power over Ethernet (PoE) cameras: 
-                2x Blackfly S BFS-PGE-31S4C, 1x Blackfly S BFS-PGE-1637C</li>
-              <li>Ouster OS1 128-channel LiDAR</li>
-              <li>ODrive S1 + Magnetic Encoder from ODrive (Correvit ground speed sensor on full scale car)</li>
-              <li>VectorNav VN-300 IMU</li>
-              <li>ZED-F9P-02B GNSS RTK GPS (from the SparkFun GPS-RTK-SMA Kit)</li>
-            </ul>
-          </li>
-          <li style="margin-bottom: 8px;"><b>Steering & Drive:</b> ODrive for controlling the motor, and a servo connected via GPIO to the Jetson Oring for steering. </li>
-          <li style="margin-bottom: 8px;"><b>Networking:</b> All systems route through a 5-port Ethernet hub capable of 10G per port. The hub connects directly to the NVIDIA Orin, with the cameras and LiDAR strictly PTP synced over the network.</li>
-          <li style="margin-bottom: 8px;"><b>Compute:</b> NVIDIA Jetson Orin AGX 64GB</li>
-        </ul>
-      </section>
+      <details>
+        <summary>Software stack</summary>
+        <div class="details-body">
+          <ul>
+            <li><b>Perception:</b> Ground removal → spatial / density filtering → LiDAR cluster extraction for cone positions → project clusters into the camera frame to segment color.</li>
+            <li><b>State estimation:</b> ROS 2 <code>robot_localization</code> EKF at 100 Hz in 2D. Indoor mode fuses VN-300 IMU + ground speed odometry; outdoor mode adds RTK GPS via <code>navsat_transform_node</code>.</li>
+            <li><b>Planning:</b> Delaunay triangulation over perceived cone centroids → midpoint graph → Dijkstra shortest path → univariate spline smoothing before handoff to the controller.</li>
+            <li><b>Control:</b> Pure pursuit lateral controller using a geometric bicycle model. Velocity commands go over USB to an ODrive motor controller, which handles low-level closed-loop motor control and publishes odometry back to state estimation.</li>
+          </ul>
+        </div>
+      </details>
 
-      <section style="margin-bottom: 40px;">
-        <h2 style="font-size: 24px; font-weight: 500; border-bottom: 1px solid var(--border-color); padding-bottom: 8px; margin-bottom: 16px;">Demo</h2>
-        <video controls playsinline style="width: 100%; border-radius: 8px; border: 1px solid var(--border-color);">
-          <source src="../../media/testbed_driving.MOV" type="video/quicktime" />
-          <source src="../../media/testbed_driving.MOV" type="video/mp4" />
-          Your browser does not support embedded video.
-        </video>
-        <p style="text-align: center; font-size: 14px; color: var(--text-secondary); margin-top: 8px;">Testbed autonomously driving at night.</p>
-      </section>
+      <details>
+        <summary>Hardware &amp; sensors</summary>
+        <div class="details-body">
+          <ul>
+            <li><b>Cameras:</b> 3× PoE — 2× Blackfly S BFS-PGE-31S4C + 1× BFS-PGE-1637C</li>
+            <li><b>LiDAR:</b> Ouster OS1, 128 channels</li>
+            <li><b>IMU:</b> VectorNav VN-300</li>
+            <li><b>GPS:</b> u-blox ZED-F9P-02B RTK (SparkFun GPS-RTK-SMA kit)</li>
+            <li><b>Drive / steer:</b> ODrive S1 + magnetic encoder for the traction motor; servo via Jetson GPIO for steering</li>
+            <li><b>Networking:</b> 5-port 10G Ethernet hub, PTP-synced between cameras, LiDAR, and compute</li>
+            <li><b>Compute:</b> NVIDIA Jetson Orin AGX 64 GB</li>
+          </ul>
+        </div>
+      </details>
 
-    </article>
+    </section>
+
   </main>
 
 </div>
-  <script src="../../script.js?v=2"></script>
+  <script src="../../script.js?v=3"></script>
 </body>
 </html>
