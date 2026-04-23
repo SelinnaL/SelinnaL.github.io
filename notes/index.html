@@ -1,317 +1,206 @@
 <!doctype html>
 <html lang="en" data-theme="light">
 <head>
-    <link type="image/png" sizes="32x32" rel="icon" href="../imgs/notes_icon.png">
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Notes</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="robots" content="noindex,nofollow,noarchive" />
+    <title>Notes - Selinna Lin</title>
+    
+    <link rel="icon" href="../favicon.ico" type="image/x-icon" />
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../styles.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
-<body>
-  <div class="app">
-    <aside class="sidebar">
-        <div class="profile card">
-          <img class="avatar" src="../imgs/avatar.jpg" alt="profile photo">
-          <h1 class="name">Selinna Lin</h1>
-          <p class="affiliation">MIT Class of 2026</p>
-          <p class="field">Electrical Engineering &amp; Computer Science</p>
+<body class="clean-home">
 
-          <div class="social">
-            <a href="https://linkedin.com/in/selinna-lin" aria-label="LinkedIn" title="LinkedIn" target="_blank">
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M4.98 3.5a2.48 2.48 0 1 1 0 4.96 2.48 2.48 0 0 1 0-4.96ZM3 8.98h3.96V21H3V8.98ZM9.02 8.98h3.8v1.64h.05c.53-1 1.82-2.05 3.74-2.05 4 0 4.74 2.63 4.74 6.05V21h-3.96v-5.54c0-1.32-.02-3.02-1.84-3.02-1.84 0-2.12 1.44-2.12 2.92V21H9.02V8.98Z"/>
-                </svg>
-            </a>
+  <header class="clean-nav">
+    <a href="../index.html" class="logo">Selinna Lin</a>
+    
+    <nav>
+      <a href="../index.html">Home</a>
 
-            <a href="mailto:selinnalin0705@gmail.com" aria-label="Email" title="Email" target="_blank">
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M3 5h18a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Zm0 2v.01L12 13l9-5.99V7H3Zm0 10h18V9.24l-8.45 5.63a1 1 0 0 1-1.1 0L3 9.24V17Z"/>
-                </svg>
-            </a>
+      <div class="nav-divider"></div>
+      
+      <a href="mailto:selinnalin0705@gmail.com" class="social-link" aria-label="Email" title="Email">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M3 5h18c1.1 0 2 .9 2 2v10c0 1.1-.9 2-2 2H3c-1.1 0-2-.9-2-2V7c0-1.1.9-2 2-2Zm0 2v.01l9 5.06 9-5.06V7H3Zm0 2.53V17h18V9.53l-9 5.06-9-5.06Z"/>
+        </svg>
+      </a>
 
-            <a href="https://github.com/SelinnaL" aria-label="GitHub" title="GitHub" target="_blank">
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M12 .5C5.73.5.75 5.48.75 11.75c0 4.9 3.18 9.05 7.59 10.52.55.1.75-.24.75-.53v-1.9c-3.09.67-3.74-1.49-3.74-1.49-.5-1.27-1.23-1.6-1.23-1.6-1-.68.08-.67.08-.67 1.1.08 1.68 1.14 1.68 1.14.98 1.68 2.57 1.19 3.2.91.1-.71.38-1.19.69-1.46-2.47-.28-5.07-1.24-5.07-5.53 0-1.22.43-2.22 1.14-3-.11-.28-.49-1.42.11-2.96 0 0 .94-.3 3.08 1.15a10.6 10.6 0 0 1 5.6 0c2.14-1.45 3.08-1.15 3.08-1.15.6 1.54.22 2.68.11 2.96.71.78 1.14 1.78 1.14 3 0 4.3-2.6 5.25-5.08 5.52.39.34.74 1 .74 2.02v3c0 .29.2.64.75.53a11.27 11.27 0 0 0 7.59-10.52C23.25 5.48 18.27.5 12 .5Z"/>
-                </svg>
-            </a>
+      <a href="https://github.com/SelinnaL" target="_blank" class="social-link" aria-label="GitHub" title="GitHub">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
+        </svg>
+      </a>
+
+      <a href="https://linkedin.com/in/selinna-lin" target="_blank" class="social-link" aria-label="LinkedIn" title="LinkedIn">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M4.98 3.5a2.48 2.48 0 1 1 0 4.96 2.48 2.48 0 0 1 0-4.96ZM3 9.5h4v11H3v-11Zm13.2 0c-2.32 0-3.4 1.28-3.96 2.18V9.5h-4v11h4v-6.13c0-1.63.31-3.22 2.34-3.22 2.01 0 2.04 1.88 2.04 3.33V20.5h4v-6.84c0-3.64-.78-6.16-4.62-6.16Z"/>
+        </svg>
+      </a>
+
+      <div class="nav-divider"></div>
+      
+      <button id="toggleTheme" class="iconbtn" type="button" aria-label="Toggle theme" title="Toggle theme">
+        <svg class="icon icon-sun" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 18a6 6 0 1 1 0-12 6 6 0 0 1 0 12Zm0-16a1 1 0 0 1 1 1v1a1 1 0 1 1-2 0V3a1 1 0 0 1 1-1Zm0 18a1 1 0 0 1 1 1v1a1 1 0 1 1-2 0v-1a1 1 0 0 1 1-1ZM4.22 5.64a1 1 0 0 1 1.41 0l.7.7a1 1 0 1 1-1.41 1.41l-.7-.7a1 1 0 0 1 0-1.41Zm12.45 12.45a1 1 0 0 1 1.41 0l.7.7a1 1 0 1 1-1.41 1.41l-.7-.7a1 1 0 0 1 0-1.41ZM2 12a1 1 0 0 1 1-1h1a1 1 0 1 1 0 2H3a1 1 0 0 1-1-1Zm18 0a1 1 0 0 1 1-1h1a1 1 0 1 1 0 2h-1a1 1 0 0 1-1-1ZM4.22 18.36a1 1 0 0 1 0-1.41l.7-.7a1 1 0 1 1 1.41 1.41l-.7.7a1 1 0 0 1-1.41 0ZM16.67 5.91a1 1 0 0 1 0-1.41l.7-.7a1 1 0 0 1 1.41 1.41l-.7.7a1 1 0 0 1-1.41 0Z"/>
+        </svg>
+        <svg class="icon icon-moon" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M21 14.5A8.5 8.5 0 0 1 9.5 3a.9.9 0 0 0-1.07 1.1A7 7 0 1 0 19.9 15.57.9.9 0 0 0 21 14.5Z"/>
+        </svg>
+      </button>
+    </nav>
+  </header>
+
+  <main class="clean-main" style="max-width: 800px; margin: 0 auto;">
+    
+    <header class="project-header" style="margin-bottom: 32px;">
+      <h1 style="font-size: 36px; font-weight: 600; margin-bottom: 8px;">Notes</h1>
+      <p style="font-size: 16px; color: var(--text-secondary); line-height: 1.6;">
+        Reference sheets for MIT courses.
+      </p>
+    </header>
+
+    <section class="feed" style="display: flex; flex-direction: column; gap: 12px;">
+
+      <article class="project-card" style="padding: 16px 20px;">
+        <div class="card-content">
+          <details class="lab-details">
+            <summary style="display: flex; justify-content: space-between; align-items: center; list-style: none; cursor: pointer;">
+              <span style="font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 500; color: var(--text-primary);">Mathematics For Computer Science</span>
+              <span class="pill" style="margin: 0;">6.1200 / 6.042</span>
+            </summary>
+            <div style="margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border-color);">
+              <p style="margin-bottom: 12px; font-size: 14px;"><a class="clean-link" href="6.1200 Reference Sheet.pdf" download>Download PDF ↓</a></p>
+              <iframe class="embed-responsive" src="6.1200 Reference Sheet.pdf" title="6.1200 Reference Sheet"></iframe>
+            </div>
+          </details>
         </div>
+      </article>
+
+      <article class="project-card" style="padding: 16px 20px;">
+        <div class="card-content">
+          <details class="lab-details">
+            <summary style="display: flex; justify-content: space-between; align-items: center; list-style: none; cursor: pointer;">
+              <span style="font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 500; color: var(--text-primary);">Introduction to Algorithms</span>
+              <span class="pill" style="margin: 0;">6.1210 / 6.006</span>
+            </summary>
+            <div style="margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border-color);">
+              <p style="margin-bottom: 12px; font-size: 14px;"><a class="clean-link" href="6.1210 Reference Sheet.pdf" download>Download PDF ↓</a></p>
+              <iframe class="embed-responsive" src="6.1210 Reference Sheet.pdf" title="6.1210 Reference Sheet"></iframe>
+            </div>
+          </details>
         </div>
+      </article>
 
-        <!-- <nav class="nav card">
-          <a class="nav-item active" href="#about">About</a>
-          <a class="nav-item" href="#projects">Projects</a>
-        </nav> -->
-
-    </aside>
-
-    <main class="main">
-        <div class="topbar">
-          <a href="../index.html" class="home-button" aria-label="Home">
-            <i class="fa fa-home"></i>
-          </a>
-          <div class="topbar-search">
-            <input id = "siteSearch" type="search" placeholder="Search" aria-label="Search" />
+      <article class="project-card" style="padding: 16px 20px;">
+        <div class="card-content">
+          <details class="lab-details">
+            <summary style="display: flex; justify-content: space-between; align-items: center; list-style: none; cursor: pointer;">
+              <span style="font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 500; color: var(--text-primary);">Design and Analysis of Algorithms</span>
+              <span class="pill" style="margin: 0;">6.1220 / 6.046</span>
+            </summary>
+            <div style="margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border-color);">
+              <p style="margin-bottom: 12px; font-size: 14px;"><a class="clean-link" href="6.1220 Reference Sheet.pdf" download>Download PDF ↓</a></p>
+              <iframe class="embed-responsive" src="6.1220 Reference Sheet.pdf" title="6.1220 Reference Sheet"></iframe>
+            </div>
+          </details>
         </div>
+      </article>
 
-          <button id="toggleTheme" class="iconbtn" type="button" aria-label="Toggle theme" title="Toggle theme">
-            <svg class="icon icon-sun" viewBox="0 0 24 24" aria-hidden="true">
-            <path
-                d="M12 18a6 6 0 1 1 0-12 6 6 0 0 1 0 12Zm0-16a1 1 0 0 1 1 1v1a1 1 0 1 1-2 0V3a1 1 0 0 1 1-1Zm0 18a1 1 0 0 1 1 1v1a1 1 0 1 1-2 0v-1a1 1 0 0 1 1-1ZM4.22 5.64a1 1 0 0 1 1.41 0l.7.7a1 1 0 1 1-1.41 1.41l-.7-.7a1 1 0 0 1 0-1.41Zm12.45 12.45a1 1 0 0 1 1.41 0l.7.7a1 1 0 1 1-1.41 1.41l-.7-.7a1 1 0 0 1 0-1.41ZM2 12a1 1 0 0 1 1-1h1a1 1 0 1 1 0 2H3a1 1 0 0 1-1-1Zm18 0a1 1 0 0 1 1-1h1a1 1 0 1 1 0 2h-1a1 1 0 0 1-1-1ZM4.22 18.36a1 1 0 0 1 0-1.41l.7-.7a1 1 0 1 1 1.41 1.41l-.7.7a1 1 0 0 1-1.41 0ZM16.67 5.91a1 1 0 0 1 0-1.41l.7-.7a1 1 0 0 1 1.41 1.41l-.7.7a1 1 0 0 1-1.41 0Z"
-            />
-            </svg>
-
-            <!-- show moon icon in dark mode -->
-            <svg class="icon icon-moon" viewBox="0 0 24 24" aria-hidden="true">
-            <path
-                d="M21 14.5A8.5 8.5 0 0 1 9.5 3a.9.9 0 0 0-1.07 1.1A7 7 0 1 0 19.9 15.57.9.9 0 0 0 21 14.5Z"
-            />
-            </svg>
-          </button>
+      <article class="project-card" style="padding: 16px 20px;">
+        <div class="card-content">
+          <details class="lab-details">
+            <summary style="display: flex; justify-content: space-between; align-items: center; list-style: none; cursor: pointer;">
+              <span style="font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 500; color: var(--text-primary);">Linear Algebra</span>
+              <span class="pill" style="margin: 0;">18.06</span>
+            </summary>
+            <div style="margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border-color);">
+              <p style="margin-bottom: 12px; font-size: 14px;"><a class="clean-link" href="18.06 Reference Sheet.pdf" download>Download PDF ↓</a></p>
+              <iframe class="embed-responsive" src="18.06 Reference Sheet.pdf" title="18.06 Reference Sheet"></iframe>
+            </div>
+          </details>
         </div>
-      <section class="feed">
-        <h3 class="section-title">NOTES</h3>
+      </article>
 
-        <div class="card padded">
-          <p class="sub">
-            These are personal, handwritten reference notes created by me for courses where reference sheets are explicitly permitted. 
-          </p>
+      <article class="project-card" style="padding: 16px 20px;">
+        <div class="card-content">
+          <details class="lab-details">
+            <summary style="display: flex; justify-content: space-between; align-items: center; list-style: none; cursor: pointer;">
+              <span style="font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 500; color: var(--text-primary);">Introduction to Machine Learning</span>
+              <span class="pill" style="margin: 0;">6.3900 / 6.036</span>
+            </summary>
+            <div style="margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border-color);">
+              <p style="margin-bottom: 12px; font-size: 14px;"><a class="clean-link" href="6.3900 Reference Sheet.pdf" download>Download PDF ↓</a></p>
+              <iframe class="embed-responsive" src="6.3900 Reference Sheet.pdf" title="6.3900 Reference Sheet"></iframe>
+            </div>
+          </details>
         </div>
+      </article>
 
-        <article class="card padded note-item">
-            <details class="note-details">
-                <summary class="note-summary">
-                    <div class="note-left">
-                        <h3 class="note-title">Mathematics For Computer Science</h3>
-                        <span class="note-sub">6.1200/6.042</span>
-                    </div>
+      <article class="project-card" style="padding: 16px 20px;">
+        <div class="card-content">
+          <details class="lab-details">
+            <summary style="display: flex; justify-content: space-between; align-items: center; list-style: none; cursor: pointer;">
+              <span style="font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 500; color: var(--text-primary);">Deep Learning</span>
+              <span class="pill" style="margin: 0;">6.7960 / 6.S898</span>
+            </summary>
+            <div style="margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border-color);">
+              <p style="margin-bottom: 12px; font-size: 14px;"><a class="clean-link" href="6.7960 Reference Sheet.pdf" download>Download PDF ↓</a></p>
+              <iframe class="embed-responsive" src="6.7960 Reference Sheet.pdf" title="6.7960 Reference Sheet"></iframe>
+            </div>
+          </details>
+        </div>
+      </article>
 
-                    <span class="chev" aria-hidden="true"></span>
-                </summary>
+      <article class="project-card" style="padding: 16px 20px;">
+        <div class="card-content">
+          <details class="lab-details">
+            <summary style="display: flex; justify-content: space-between; align-items: center; list-style: none; cursor: pointer;">
+              <span style="font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 500; color: var(--text-primary);">Software Construction</span>
+              <span class="pill" style="margin: 0;">6.1020 / 6.031</span>
+            </summary>
+            <div style="margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border-color);">
+              <p style="margin-bottom: 12px; font-size: 14px;"><a class="clean-link" href="6.1020 Reference Sheet.pdf" download>Download PDF ↓</a></p>
+              <iframe class="embed-responsive" src="6.1020 Reference Sheet.pdf" title="6.1020 Reference Sheet"></iframe>
+            </div>
+          </details>
+        </div>
+      </article>
 
-                <div class="note-body">
-                    
-                    <iframe class="pdf-embed"
-                            src="6.1200 Reference Sheet.pdf"
-                            title="6.1200 Reference Sheet">
-                    </iframe>
+      <article class="project-card" style="padding: 16px 20px;">
+        <div class="card-content">
+          <details class="lab-details">
+            <summary style="display: flex; justify-content: space-between; align-items: center; list-style: none; cursor: pointer;">
+              <span style="font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 500; color: var(--text-primary);">Circuits and Electronics</span>
+              <span class="pill" style="margin: 0;">6.2000 / 6.002</span>
+            </summary>
+            <div style="margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border-color);">
+              <p style="margin-bottom: 12px; font-size: 14px;"><a class="clean-link" href="6.2000 Reference Sheet.pdf" download>Download PDF ↓</a></p>
+              <iframe class="embed-responsive" src="6.2000 Reference Sheet.pdf" title="6.2000 Reference Sheet"></iframe>
+            </div>
+          </details>
+        </div>
+      </article>
 
-                    <a class="link" href="6.1200 Reference Sheet.pdf" download>
-                      Download
-                    </a>
-                </div>
+      <article class="project-card" style="padding: 16px 20px;">
+        <div class="card-content">
+          <details class="lab-details">
+            <summary style="display: flex; justify-content: space-between; align-items: center; list-style: none; cursor: pointer;">
+              <span style="font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 500; color: var(--text-primary);">Introductory Biology</span>
+              <span class="pill" style="margin: 0;">7.014</span>
+            </summary>
+            <div style="margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border-color);">
+              <p style="margin-bottom: 12px; font-size: 14px;"><a class="clean-link" href="7.014 Reference Sheet.pdf" download>Download PDF ↓</a></p>
+              <iframe class="embed-responsive" src="7.014 Reference Sheet.pdf" title="7.014 Reference Sheet"></iframe>
+            </div>
+          </details>
+        </div>
+      </article>
 
-            </details>
-        </article>
-
-        <article class="card padded note-item">
-            <details class="note-details">
-                <summary class="note-summary">
-                    <div class="note-left">
-                        <h3 class="note-title">Introduction to Algorithms</h3>
-                        <span class="note-sub">6.1210/6.006</span>
-                    </div>
-
-                    <span class="chev" aria-hidden="true"></span>
-                </summary>
-
-                <div class="note-body">
-                    
-                    <iframe class="pdf-embed"
-                            src="6.1210 Reference Sheet.pdf"
-                            title="6.1210 Reference Sheet">
-                    </iframe>
-
-                    <a class="link" href="6.1210 Reference Sheet.pdf" download>
-                      Download
-                    </a>
-                </div>
-
-            </details>
-        </article>
-
-        <article class="card padded note-item">
-            <details class="note-details">
-                <summary class="note-summary">
-                    <div class="note-left">
-                        <h3 class="note-title">Design and Analysis of Algorithms</h3>
-                        <span class="note-sub">6.1220/6.046</span>
-                    </div>
-
-                    <span class="chev" aria-hidden="true"></span>
-                </summary>
-
-                <div class="note-body">
-                    
-                    <iframe class="pdf-embed"
-                            src="6.1220 Reference Sheet.pdf"
-                            title="6.1220 Reference Sheet">
-                    </iframe>
-
-                    <a class="link" href="6.1220 Reference Sheet.pdf" download>
-                      Download
-                    </a>
-                </div>
-
-            </details>
-        </article>
-
-        <article class="card padded note-item">
-            <details class="note-details">
-                <summary class="note-summary">
-                    <div class="note-left">
-                        <h3 class="note-title">Linear Algebra</h3>
-                        <span class="note-sub">18.06</span>
-                    </div>
-
-                    <span class="chev" aria-hidden="true"></span>
-                </summary>
-
-                <div class="note-body">
-                    
-                    <iframe class="pdf-embed"
-                            src="18.06 Reference Sheet.pdf"
-                            title="18.06 Reference Sheet">
-                    </iframe>
-
-                    <a class="link" href="18.06 Reference Sheet.pdf" download>
-                      Download
-                    </a>
-                </div>
-
-            </details>
-        </article>
-
-        <article class="card padded note-item">
-            <details class="note-details">
-                <summary class="note-summary">
-                    <div class="note-left">
-                        <h3 class="note-title">Introduction to Machine Learning</h3>
-                        <span class="note-sub">6.3900/6.036</span>
-                    </div>
-
-                    <span class="chev" aria-hidden="true"></span>
-                </summary>
-
-                <div class="note-body">
-                    
-                    <iframe class="pdf-embed"
-                            src="6.3900 Reference Sheet.pdf"
-                            title="6.3900 Reference Sheet">
-                    </iframe>
-
-                    <a class="link" href="6.3900 Reference Sheet.pdf" download>
-                      Download
-                    </a>
-                </div>
-
-            </details>
-        </article>
-
-        <article class="card padded note-item">
-            <details class="note-details">
-                <summary class="note-summary">
-                    <div class="note-left">
-                        <h3 class="note-title">Deep Learning</h3>
-                        <span class="note-sub">6.7960/6.S898</span>
-                    </div>
-
-                    <span class="chev" aria-hidden="true"></span>
-                </summary>
-
-                <div class="note-body">
-                    
-                    <iframe class="pdf-embed"
-                            src="6.7960 Reference Sheet.pdf"
-                            title="6.7960 Reference Sheet">
-                    </iframe>
-
-                    <a class="link" href="6.7960 Reference Sheet.pdf" download>
-                      Download
-                    </a>
-                </div>
-
-            </details>
-        </article>
-
-        <article class="card padded note-item">
-            <details class="note-details">
-                <summary class="note-summary">
-                    <div class="note-left">
-                        <h3 class="note-title">Software Construction</h3>
-                        <span class="note-sub">6.1020/6.031</span>
-                    </div>
-
-                    <span class="chev" aria-hidden="true"></span>
-                </summary>
-
-                <div class="note-body">
-                    <iframe class="pdf-embed"
-                            src="6.1020 Reference Sheet.pdf"
-                            title="6.1020 Reference Sheet">
-                    </iframe>
-                    <a class="link" href="6.1020 Reference Sheet.pdf" download>
-                      Download
-                    </a>
-                </div>
-
-            </details>
-        </article>
-
-        <article class="card padded note-item">
-            <details class="note-details">
-                <summary class="note-summary">
-                    <div class="note-left">
-                        <h3 class="note-title">Circuits and Electronics</h3>
-                        <span class="note-sub">6.2000/6.002</span>
-                    </div>
-
-                    <span class="chev" aria-hidden="true"></span>
-                </summary>
-
-                <div class="note-body">
-                    <iframe class="pdf-embed"
-                            src="6.2000 Reference Sheet.pdf"
-                            title="6.2000 Reference Sheet">
-                    </iframe>
-                    <a class="link" href="6.2000 Reference Sheet.pdf" download>
-                      Download
-                    </a>
-                </div>
-
-            </details>
-        </article>
-
-        <article class="card padded note-item">
-            <details class="note-details">
-                <summary class="note-summary">
-                    <div class="note-left">
-                        <h3 class="note-title">Introductory Biology</h3>
-                        <span class="note-sub">7.014</span>
-                    </div>
-
-                    <span class="chev" aria-hidden="true"></span>
-                </summary>
-
-                <div class="note-body">
-                    <iframe class="pdf-embed"
-                            src="7.014 Reference Sheet.pdf"
-                            title="7.014 Reference Sheet">
-                    </iframe>
-                    <a class="link" href="7.014 Reference Sheet.pdf" download>
-                      Download
-                    </a>
-                </div>
-
-            </details>
-        </article>
-
-      </section>
-    </main>
-
-    <aside class="right"></aside>
-  </div>
+    </section>
+  </main>
 
   <script src="../script.js"></script>
 </body>
