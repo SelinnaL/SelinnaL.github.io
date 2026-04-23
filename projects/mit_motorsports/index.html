@@ -109,12 +109,12 @@
               <li>3 Power over Ethernet (PoE) cameras: 
                 2x Blackfly S BFS-PGE-31S4C, 1x Blackfly S BFS-PGE-1637C</li>
               <li>Ouster OS1 128-channel LiDAR</li>
-              <li>Correvit ground speed sensor (only on full scale car, alternative to getting speed on testbed is using the magnetic encoder extrapolated velocity from the odrive)</li>
+              <li>ODrive S1 + Magnetic Encoder from ODrive (Correvit ground speed sensor on full scale car)</li>
               <li>VectorNav VN-300 IMU</li>
               <li>ZED-F9P-02B GNSS RTK GPS (from the SparkFun GPS-RTK-SMA Kit)</li>
             </ul>
           </li>
-          <li style="margin-bottom: 8px;"><b>Steering & Drive:</b> Power steering servo and a brushless motor driven by an <b>ODrive</b>.</li>
+          <li style="margin-bottom: 8px;"><b>Steering & Drive:</b> ODrive for controlling the motor, and a servo connected via GPIO to the Jetson Oring for steering. </li>
           <li style="margin-bottom: 8px;"><b>Networking:</b> All systems route through a 5-port Ethernet hub capable of 10G per port. The hub connects directly to the NVIDIA Orin, with the cameras and LiDAR strictly PTP synced over the network.</li>
           <li style="margin-bottom: 8px;"><b>Compute:</b> NVIDIA Jetson Orin AGX 64GB</li>
         </ul>
