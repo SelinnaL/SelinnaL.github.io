@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Robotics: Science and Systems - Selinna Lin</title>
+  <link rel="icon" href="../../favicon.ico" type="image/x-icon" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&family=Source+Serif+Pro:wght@400;600&family=Source+Sans+Pro:wght@300;400;600&display=swap" rel="stylesheet">  <link rel="stylesheet" href="../../styles.css" />
+</head>
+
+<body class="clean-home">
+
+  <header class="clean-nav">
+    <a href="../../index.html" class="logo">Selinna Lin</a>
+    
+    <nav>
+      <a href="../../index.html">Home</a>
+
+      <div class="nav-divider"></div>
+      
+      <a href="mailto:selinnalin0705@gmail.com" class="social-link" aria-label="Email" title="Email">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M3 5h18c1.1 0 2 .9 2 2v10c0 1.1-.9 2-2 2H3c-1.1 0-2-.9-2-2V7c0-1.1.9-2 2-2Zm0 2v.01l9 5.06 9-5.06V7H3Zm0 2.53V17h18V9.53l-9 5.06-9-5.06Z"/>
+        </svg>
+      </a>
+
+      <a href="https://github.com/SelinnaL" target="_blank" class="social-link" aria-label="GitHub" title="GitHub">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
+        </svg>
+      </a>
+
+      <a href="https://linkedin.com/in/selinna-lin" target="_blank" class="social-link" aria-label="LinkedIn" title="LinkedIn">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M4.98 3.5a2.48 2.48 0 1 1 0 4.96 2.48 2.48 0 0 1 0-4.96ZM3 9.5h4v11H3v-11Zm13.2 0c-2.32 0-3.4 1.28-3.96 2.18V9.5h-4v11h4v-6.13c0-1.63.31-3.22 2.34-3.22 2.01 0 2.04 1.88 2.04 3.33V20.5h4v-6.84c0-3.64-.78-6.16-4.62-6.16Z"/>
+        </svg>
+      </a>
+
+      <div class="nav-divider"></div>
+      
+      <button id="toggleTheme" class="iconbtn" type="button" aria-label="Toggle theme" title="Toggle theme">
+        <svg class="icon icon-sun" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 18a6 6 0 1 1 0-12 6 6 0 0 1 0 12Zm0-16a1 1 0 0 1 1 1v1a1 1 0 1 1-2 0V3a1 1 0 0 1 1-1Zm0 18a1 1 0 0 1 1 1v1a1 1 0 1 1-2 0v-1a1 1 0 0 1 1-1ZM4.22 5.64a1 1 0 0 1 1.41 0l.7.7a1 1 0 1 1-1.41 1.41l-.7-.7a1 1 0 0 1 0-1.41Zm12.45 12.45a1 1 0 0 1 1.41 0l.7.7a1 1 0 1 1-1.41 1.41l-.7-.7a1 1 0 0 1 0-1.41ZM2 12a1 1 0 0 1 1-1h1a1 1 0 1 1 0 2H3a1 1 0 0 1-1-1Zm18 0a1 1 0 0 1 1-1h1a1 1 0 1 1 0 2h-1a1 1 0 0 1-1-1ZM4.22 18.36a1 1 0 0 1 0-1.41l.7-.7a1 1 0 1 1 1.41 1.41l-.7.7a1 1 0 0 1-1.41 0ZM16.67 5.91a1 1 0 0 1 0-1.41l.7-.7a1 1 0 0 1 1.41 1.41l-.7.7a1 1 0 0 1-1.41 0Z"/>
+        </svg>
+        <svg class="icon icon-moon" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M21 14.5A8.5 8.5 0 0 1 9.5 3a.9.9 0 0 0-1.07 1.1A7 7 0 1 0 19.9 15.57.9.9 0 0 0 21 14.5Z"/>
+        </svg>
+      </button>
+    </nav>
+  </header>
+
+  <main class="project-detail" style="max-width: 800px; margin: 0 auto;">
+    
+    <header class="project-header" style="margin-bottom: 48px;">
+      <h1 style="font-size: 40px; font-weight: 600; margin-bottom: 16px;">Robotics: Science and Systems</h1>
+      <p style="font-size: 18px; color: var(--text-secondary); line-height: 1.6;">
+        Hands-on robotics systems course that builds a full autonomy stack, progressing from feedback control to perception, state estimation, planning, and integrated system behavior.
+      </p>
+      <div class="pills" style="margin-top: 24px;">
+        <span class="pill">6.4200 / 6.141</span>
+      </div>
+    </header>
+
+    <article class="project-body" style="line-height: 1.8; color: var(--text-primary);">
+      
+      <section style="margin-bottom: 32px;">
+        <input 
+            id="labSearch" 
+            class="clean-search"
+            type="search" 
+            placeholder="Search" 
+            aria-label="Search" 
+        />
+      </section>
+
+      <section class="feed" style="display: flex; flex-direction: column; gap: 24px;">
+        
+        <article class="project-card lab-item">
+          <div class="card-content">
+            <h3>Lab 3 — Wall Follower</h3>
+            <p class="sub">Wall following + safety controller.</p>
+            <div class="pills" style="margin-bottom: 24px;">
+              <span class="pill">Control</span>
+              <span class="pill">Safety</span>
+            </div>
+
+            <details class="lab-details">
+              <summary>View Details & Report</summary>
+              <div class="lab-content" style="margin-top: 16px;">
+                <p>
+                  <a class="clean-link" href="https://docs.google.com/presentation/d/1IFPv8Aagu0s7EX3qjQbuQIEKmTI20WfpATUn20qdvkc/edit?usp=sharing" target="_blank" rel="noopener">Presentation</a>
+                  <span style="color: var(--text-secondary); margin: 0 8px;">•</span>
+                  <a class="clean-link" href="../rss/latex_report/lab3_report.pdf" download>Report (PDF)</a>
+                </p>
+                <iframe class="embed-responsive" src="https://docs.google.com/presentation/d/e/2PACX-1vSBAWw8eT5l04g6Uy4DFQi5hVaaVAomqC4dETcQQ2ZbBk3PP3ERQeaNhqEdmlGXAKRlgzYEakQrhkbv/embed?start=true&loop=true&delayms=3000" allowfullscreen></iframe>
+              </div>
+            </details>
+          </div>
+        </article>
+
+        <article class="project-card lab-item">
+          <div class="card-content">
+            <h3>Lab 4 — Visual Servoing</h3>
+            <p class="sub">Cone parking controller + orange line follower.</p>
+            <div class="pills" style="margin-bottom: 24px;">
+              <span class="pill">Perception</span>
+              <span class="pill">Control</span>
+            </div>
+
+            <details class="lab-details">
+              <summary>View Details & Report</summary>
+              <div class="lab-content" style="margin-top: 16px;">
+                <p>
+                  <a class="clean-link" href="https://docs.google.com/presentation/d/13YkauD_H1IsLXH49dDZ0raq4feEqzXsgx9zFEzzzEIM/edit?usp=sharing" target="_blank" rel="noopener">Presentation</a>
+                </p>
+                <iframe class="embed-responsive" src="https://docs.google.com/presentation/d/e/2PACX-1vRKKbyDGl2SPOjy4e9kulnr_gcCQ6tWYpM7yXuHcvkE05Jgn3C17mfedvd0fmxN6WQ3T5t-9cGql6np/embed?start=true&loop=true&delayms=3000" allowfullscreen></iframe>
+              </div>
+            </details>
+          </div>
+        </article>
+
+        <article class="project-card lab-item">
+          <div class="card-content">
+            <h3>Lab 5 — Localization</h3>
+            <p class="sub">Tracking the car on a map.</p>
+            <div class="pills" style="margin-bottom: 24px;">
+              <span class="pill">Localization</span>
+              <span class="pill">Filtering</span>
+            </div>
+
+            <details class="lab-details">
+              <summary>View Details & Report</summary>
+              <div class="lab-content" style="margin-top: 16px;">
+                <p>
+                  <a class="clean-link" href="https://docs.google.com/presentation/d/1-ZKhbim7sFGDUP2Jq3kBCo8GJo9HBWcfTvtL4drMcCs/edit?usp=sharing" target="_blank" rel="noopener">Presentation</a>
+                  <span style="color: var(--text-secondary); margin: 0 8px;">•</span>
+                  <a class="clean-link" href="../rss/latex_report/lab5_report.pdf" download>Report (PDF)</a>
+                </p>
+                <iframe class="embed-responsive" src="https://docs.google.com/presentation/d/e/2PACX-1vRZCGRv46UhQlwOI6axNDT7IH4aYoM_QRzAUL_EHYYtVIQqFRuEZBiKVg-hLgVBmRZTFfE2RcJf6xnS/embed?start=true&loop=true&delayms=3000" allowfullscreen></iframe>
+              </div>
+            </details>
+          </div>
+        </article>
+
+        <article class="project-card lab-item">
+          <div class="card-content">
+            <h3>Lab 6 — Path Planning</h3>
+            <p class="sub">Planning a trajectory for the car.</p>
+            <div class="pills" style="margin-bottom: 24px;">
+              <span class="pill">Planning</span>
+              <span class="pill">Optimization</span>
+            </div>
+
+            <details class="lab-details">
+              <summary>View Details & Report</summary>
+              <div class="lab-content" style="margin-top: 16px;">
+                <p>
+                  <a class="clean-link" href="https://docs.google.com/presentation/d/1YzRKbv77isvuyPvXdJSTddkzfmEW9xzEB25fYW4DcmI/edit?usp=sharing" target="_blank" rel="noopener">Presentation</a>
+                  <span style="color: var(--text-secondary); margin: 0 8px;">•</span>
+                  <a class="clean-link" href="../rss/latex_report/lab6_report.pdf" download>Report (PDF)</a>
+                </p>
+                <iframe class="embed-responsive" src="https://docs.google.com/presentation/d/e/2PACX-1vRkgBo4EuR3qvMfWkcxmRu6MUkKHzgMzEHBAH99dpPSAuCUNDUoJUReMvHNZp7OSPVBXxghERupRS32/embed?start=false&loop=false&delayms=3000" allowfullscreen></iframe>
+              </div>
+            </details>
+          </div>
+        </article>
+
+        <article class="project-card lab-item">
+          <div class="card-content">
+            <h3>Final Challenge</h3>
+            <p class="sub">Shrink ray heist + final race.</p>
+            <div class="pills" style="margin-bottom: 24px;">
+              <span class="pill">System</span>
+              <span class="pill">Integration</span>
+            </div>
+
+            <details class="lab-details">
+              <summary>View Details & Report</summary>
+              <div class="lab-content" style="margin-top: 16px;">
+                <p>
+                  <a class="clean-link" href="https://docs.google.com/presentation/d/1yUz7D13y0xfRRkdrdqmo9i7K_gSz_IweKjJ8Vh319A4/edit?slide=id.g353de8061aa_0_8984#slide=id.g353de8061aa_0_8984" target="_blank" rel="noopener">Presentation</a>
+                </p>
+                <iframe class="embed-responsive" src="https://docs.google.com/presentation/d/e/2PACX-1vTrGSULQuT32qfZlX_PGkTROV4sgsUztBt9K3OSS2WmhhEjqwXWORSxK3DfLTIcnFLoWrPm16QT3Tdq/pubembed?start=true&loop=true&delayms=3000" allowfullscreen></iframe>
+              </div>
+            </details>
+          </div>
+        </article>
+
+      </section>
+    </article>
+  </main>
+
+  <script src="../../script.js"></script>
+  <script>
+    const input = document.getElementById("labSearch");
+    const items = Array.from(document.querySelectorAll(".lab-item"));
+
+    input?.addEventListener("input", () => {
+      const q = input.value.trim().toLowerCase();
+      for (const el of items) {
+        const text = el.innerText.toLowerCase();
+        el.style.display = text.includes(q) ? "" : "none";
+      }
+    });
+  </script>
+</body>
+</html>
