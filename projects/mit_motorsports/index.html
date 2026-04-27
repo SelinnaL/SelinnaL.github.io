@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>MIT Motorsports - Selinna Lin</title>
   <link rel="icon" href="../../favicon.ico" type="image/x-icon" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&family=Source+Serif+Pro:wght@400;600&family=Source+Sans+Pro:wght@300;400;600&display=swap" rel="stylesheet">  <link rel="stylesheet" href="../../styles.css?v=3" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&family=Source+Serif+Pro:wght@400;600&family=Source+Sans+Pro:wght@300;400;600&display=swap" rel="stylesheet">  <link rel="stylesheet" href="../../styles.css?v=4" />
 </head>
 
 <body class="clean-home">
@@ -96,6 +96,21 @@
       </details>
 
       <details>
+        <summary>Hardware &amp; sensors</summary>
+        <div class="details-body">
+          <ul>
+            <li><b>Cameras:</b> 3x PoE — 2x Blackfly S BFS-PGE-31S4C + 1x BFS-PGE-1637C</li>
+            <li><b>LiDAR:</b> Ouster OS1, 128 channels</li>
+            <li><b>IMU:</b> VectorNav VN-300</li>
+            <li><b>GPS:</b> u-blox ZED-F9P-02B RTK (SparkFun GPS-RTK-SMA kit)</li>
+            <li><b>Drive / steer:</b> ODrive S1 + magnetic encoder for the traction motor; servo via Jetson GPIO for steering</li>
+            <li><b>Networking:</b> 5-port 10G Ethernet hub, PTP-synced between cameras, LiDAR, and compute</li>
+            <li><b>Compute:</b> NVIDIA Jetson Orin AGX 64 GB</li>
+          </ul>
+        </div>
+      </details>
+
+      <details>
         <summary>Software stack</summary>
         <div class="details-body">
           <ul>
@@ -108,17 +123,20 @@
       </details>
 
       <details>
-        <summary>Hardware &amp; sensors</summary>
+        <summary>Design poster</summary>
         <div class="details-body">
-          <ul>
-            <li><b>Cameras:</b> 3× PoE — 2× Blackfly S BFS-PGE-31S4C + 1× BFS-PGE-1637C</li>
-            <li><b>LiDAR:</b> Ouster OS1, 128 channels</li>
-            <li><b>IMU:</b> VectorNav VN-300</li>
-            <li><b>GPS:</b> u-blox ZED-F9P-02B RTK (SparkFun GPS-RTK-SMA kit)</li>
-            <li><b>Drive / steer:</b> ODrive S1 + magnetic encoder for the traction motor; servo via Jetson GPIO for steering</li>
-            <li><b>Networking:</b> 5-port 10G Ethernet hub, PTP-synced between cameras, LiDAR, and compute</li>
-            <li><b>Compute:</b> NVIDIA Jetson Orin AGX 64 GB</li>
-          </ul>
+          <a
+            href="../../imgs/posters/MY26 Autonomous Design Poster.jpg"
+            target="_blank"
+            rel="noopener"
+            class="poster-link"
+            aria-label="Open design poster full size"
+          >
+            <img
+              src="../../imgs/posters/MY26 Autonomous Design Poster.jpg"
+              alt="MY26 MIT Motorsports Driverless System Design Poster"
+            />
+          </a>
         </div>
       </details>
 
@@ -127,6 +145,6 @@
   </main>
 
 </div>
-  <script src="../../script.js?v=3"></script>
+  <script src="../../script.js?v=4"></script>
 </body>
 </html>
