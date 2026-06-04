@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>MITOS Personal Heat Monitor - Selinna Lin</title>
+  <link rel="icon" href="../../favicon.ico" type="image/x-icon" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&family=Source+Serif+Pro:wght@400;600&family=Source+Sans+Pro:wght@300;400;600&display=swap" rel="stylesheet">  <link rel="stylesheet" href="../../styles.css?v=5" />
+</head>
+
+<body class="clean-home">
+<div class="page-wrap">
+
+  <header class="clean-nav">
+    <a href="../../index.html" class="logo">Selinna Lin</a>
+    
+    <nav>
+      <a href="../../index.html">Home</a>
+
+      <div class="nav-divider"></div>
+      
+      <a href="mailto:selinnalin0705@gmail.com" class="social-link" aria-label="Email" title="Email">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M3 5h18c1.1 0 2 .9 2 2v10c0 1.1-.9 2-2 2H3c-1.1 0-2-.9-2-2V7c0-1.1.9-2 2-2Zm0 2v.01l9 5.06 9-5.06V7H3Zm0 2.53V17h18V9.53l-9 5.06-9-5.06Z"/>
+        </svg>
+      </a>
+
+      <a href="https://github.com/SelinnaL" target="_blank" class="social-link" aria-label="GitHub" title="GitHub">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
+        </svg>
+      </a>
+
+      <a href="https://linkedin.com/in/selinna-lin" target="_blank" class="social-link" aria-label="LinkedIn" title="LinkedIn">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M4.98 3.5a2.48 2.48 0 1 1 0 4.96 2.48 2.48 0 0 1 0-4.96ZM3 9.5h4v11H3v-11Zm13.2 0c-2.32 0-3.4 1.28-3.96 2.18V9.5h-4v11h4v-6.13c0-1.63.31-3.22 2.34-3.22 2.01 0 2.04 1.88 2.04 3.33V20.5h4v-6.84c0-3.64-.78-6.16-4.62-6.16Z"/>
+        </svg>
+      </a>
+
+      <div class="nav-divider"></div>
+      
+      <button id="toggleTheme" class="iconbtn" type="button" aria-label="Toggle theme" title="Toggle theme">
+        <svg class="icon icon-sun" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 18a6 6 0 1 1 0-12 6 6 0 0 1 0 12Zm0-16a1 1 0 0 1 1 1v1a1 1 0 1 1-2 0V3a1 1 0 0 1 1-1Zm0 18a1 1 0 0 1 1 1v1a1 1 0 1 1-2 0v-1a1 1 0 0 1 1-1ZM4.22 5.64a1 1 0 0 1 1.41 0l.7.7a1 1 0 1 1-1.41 1.41l-.7-.7a1 1 0 0 1 0-1.41Zm12.45 12.45a1 1 0 0 1 1.41 0l.7.7a1 1 0 1 1-1.41 1.41l-.7-.7a1 1 0 0 1 0-1.41ZM2 12a1 1 0 0 1 1-1h1a1 1 0 1 1 0 2H3a1 1 0 0 1-1-1Zm18 0a1 1 0 0 1 1-1h1a1 1 0 1 1 0 2h-1a1 1 0 0 1-1-1ZM4.22 18.36a1 1 0 0 1 0-1.41l.7-.7a1 1 0 1 1 1.41 1.41l-.7.7a1 1 0 0 1-1.41 0ZM16.67 5.91a1 1 0 0 1 0-1.41l.7-.7a1 1 0 0 1 1.41 1.41l-.7.7a1 1 0 0 1-1.41 0Z"/>
+        </svg>
+        <svg class="icon icon-moon" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M21 14.5A8.5 8.5 0 0 1 9.5 3a.9.9 0 0 0-1.07 1.1A7 7 0 1 0 19.9 15.57.9.9 0 0 0 21 14.5Z"/>
+        </svg>
+      </button>
+    </nav>
+  </header>
+
+  <main class="project-detail">
+
+    <header class="project-intro-detail">
+      <h1>MITOS Personal Heat Monitor</h1>
+      <p class="project-tagline">
+        A backpack accessory that maps temperature, humidity, and sun exposure across the MIT campus.
+        A custom ESP32-based device streams data over WiFi to a live heat-map dashboard.
+      </p>
+      <div class="pills">
+        <span class="pill">KiCad</span>
+        <span class="pill">C++</span>
+        <span class="pill">Python</span>
+      </div>
+      <p class="project-tagline" style="margin-top:18px;">
+        <a class="clean-link" href="https://efpi-11.mit.edu/" target="_blank" rel="noopener">Live Dashboard</a>
+      </p>
+    </header>
+
+    <article class="project-writeup">
+
+      <section>
+        <h2>Overview</h2>
+        <p>
+          The MIT Office of Sustainability (MITOS) wanted a scalable way to measure how temperature and humidity vary across campus from the perspective of people moving through it. 
+          Existing weather stations provided only limited coverage and could not capture the highly localized conditions experienced along different walking routes, and so they wanted a wearable device that could provide them the data they needed. 
+          Our team developed a low-cost personal heat monitor that attaches to a backpack and continuously records temperature, humidity, and light exposure. 
+          Using MIT WiFi for geolocation and a centralized data pipeline, the system enables a map of campus microclimates and supports data-driven sustainability initiatives.
+        </p>
+        <figure class="project-figure figure-narrow">
+          <img src="figures/device.png" alt="Final 3D-printed enclosure with carabiner clip" />
+          <figcaption>The final 3D-printed enclosure that would be clipped to a backpack with a carabiner.</figcaption>
+        </figure>
+      </section>
+
+      <section>
+        <h2>The live dashboard</h2>
+        <p>
+          The server aggregates readings from many devices into a live, interactive heat map of campus at
+          <a class="clean-link" href="https://efpi-11.mit.edu/" target="_blank" rel="noopener">efpi-11.mit.edu</a>.
+          A public site offers the live map, per-device lookup, and CSV export, plus a password-protected
+          admin portal for registering and managing devices.
+        </p>
+        <figure class="project-figure">
+          <img src="figures/dashboard.png" alt="Live heat-map dashboard showing campus temperatures" />
+          <figcaption>The public dashboard: a campus heat map, per-node readings, and data export.</figcaption>
+        </figure>
+      </section>
+
+      <section>
+        <h2>Designing the sensor boards</h2>
+        <p>
+          The main board carries an ESP32-C3 module (WiFi, I2C, ADC)
+          with USB-C charging, a battery management circuit, and a 3.3V regulator, exposing an I2C bus
+          for the sensors. The device uses its MAC address as a unique ID.
+        </p>
+        <figure class="project-figure figure-narrow">
+          <img src="figures/mainboard_pcb.png" alt="ESP32-C3 main sensor board designed in KiCad" />
+          <figcaption>Main board: ESP32-C3, USB-C charging and BMS, and the I2C sensor bus.</figcaption>
+        </figure>
+        <p>
+          A separate light-sensor board breaks out the VEML-7700 lux sensor so it can sit behind a
+          window in the enclosure, away from the heat-generating electronics.
+        </p>
+        <figure class="project-figure figure-narrow">
+          <img src="figures/light_sensor_pcb.png" alt="VEML-7700 light sensor daughterboard designed in KiCad" />
+          <figcaption>VEML-7700 lux sensor board.</figcaption>
+        </figure>
+      </section>
+
+      <section>
+        <h2>Sensor characterization and airflow</h2>
+        <p>
+          One main problem we encountered was the slow rise and fall time in the SHT40 whenever there is a drastic temperature change specifically when moving from inside vs. outside. Hence, we applied: (1) a thermal isolator separates the sensor from the main board, and (2)a small fan pulls outside air across it to increase air flow through the sensor. These changes vastly improved the sensor response time and accuracy.
+        </p>
+        <figure class="project-figure figure-narrow">
+          <img src="figures/internals.png" alt="Internal assembly showing main PCB, sensors, and airflow fan" />
+          <figcaption>Internal assembly: main board, sensors, and the airflow fan at the base.</figcaption>
+        </figure>
+      </section>
+
+      <section>
+        <h2>Validation</h2>
+        <p>
+          We validated field readings against the MIT Sailing Pavilion reference weather station. Our device
+          tracked the reference closely, staying within the &plusmn;3&nbsp;&deg;F accuracy target.
+        </p>
+        <figure class="project-figure">
+          <img src="figures/temp_validation.png" alt="Temperature validation against the MIT Sailing Pavilion reference station" />
+          <figcaption>Our device versus the MIT Sailing Pavilion reference station over an overnight run.</figcaption>
+        </figure>
+      </section>
+
+      <section>
+        <h2>Results</h2>
+        <p>
+          After system optimization, the device lasted 61&nbsp;hours on a single charge, more than double the
+          24-hour requirement. The final bill of materials came in at $18.56 per unit, under the
+          $20 cost target, and the device is deployed on campus today.
+        </p>
+        <figure class="project-figure">
+          <img src="figures/battery_life.png" alt="Battery voltage over a 61-hour endurance run" />
+          <figcaption>Battery voltage over a 61-hour endurance run before dropping to the usable limit.</figcaption>
+        </figure>
+      </section>
+
+    </article>
+
+  </main>
+
+</div>
+  <script src="../../script.js?v=5"></script>
+</body>
+</html>

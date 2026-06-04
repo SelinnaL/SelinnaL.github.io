@@ -25,7 +25,7 @@
 // ===== Image lightbox =====
 (function () {
     const triggers = document.querySelectorAll(
-        ".project-gallery img, .poster-link"
+        ".project-gallery img, .project-figure img, .poster-link"
     );
     if (!triggers.length) return;
 
