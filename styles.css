@@ -726,6 +726,23 @@ body.lightbox-open {
   }
 }
 
+/* Embedded PDF viewer */
+.pdf-embed {
+  width: 100%;
+  height: 80vh;
+  min-height: 520px;
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  background: var(--card-bg);
+}
+
+@media (max-width: 768px) {
+  .pdf-embed {
+    height: 70vh;
+    min-height: 420px;
+  }
+}
+
 /* For RSS page */ 
 /* Clean Search Bar */
 .clean-search {
